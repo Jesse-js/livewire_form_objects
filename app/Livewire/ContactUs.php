@@ -19,7 +19,7 @@ class ContactUs extends Component
 
     public function submitForm(): void
     {
-        $this->validate();
+        $this->contactUsForm->validate();
         try {
             Contact::create($this->contactUsForm->toArray());
             session()->flash('success', 'Your message has been sent.');
