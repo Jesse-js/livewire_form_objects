@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\ContactUsForm;
+use App\Models\Contact;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -20,7 +21,7 @@ class ContactUs extends Component
     {
         $this->validate();
 
-        
+        Contact::create($this->contactUsForm->toArray());
         
         session()->flash('success', 'Your message has been sent.');
 
