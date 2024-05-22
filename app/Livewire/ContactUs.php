@@ -29,7 +29,7 @@ class ContactUs extends Component
             return;
         }
 
-        $this->reset();
+        $this->contactUsForm->reset();
     }
 
     public function render(): View
