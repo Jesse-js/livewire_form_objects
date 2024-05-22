@@ -9,7 +9,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">Success!</span> {{ session('success') }}.
+                <span class="font-medium">Success!</span> {{ session('success') }}
             </div>
         </div>
     @elseif(session('error'))
@@ -22,7 +22,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">Error!</span> {{ session('error') }}.
+                <span class="font-medium">Error!</span> {{ session('error') }}
             </div>
         </div>
     @endif
