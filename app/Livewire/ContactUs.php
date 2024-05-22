@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\ContactUsForm;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -11,16 +13,20 @@ use Livewire\Component;
 #[Title('Contact Us')]
 class ContactUs extends Component
 {
-    #[Validate('required|email|max:255')]
-    public ?string $email;
 
-    #[Validate('required|min:3|max:255')]
-    public ?string $subject;
+    public ContactUsForm $contactUsForm;
 
-    #[Validate('required|min:5|max:255')]
-    public ?string $message;
+    public function submitForm(): void
+    {
+        $this->validate();
 
-    public function render()
+        
+        
+        session()->flash('success', 'Your message has been sent.');
+
+        $this->reset();
+    }
+    public function render(): View
     {
         return view('livewire.contact-us');
     }
