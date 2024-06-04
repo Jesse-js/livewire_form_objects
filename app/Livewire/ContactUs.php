@@ -24,13 +24,11 @@ class ContactUs extends Component
     {
         $validated = $this->contactUsForm->validate();
 
-        if (is_array($this->contactUsForm->images)) {
-            foreach ($this->contactUsForm->images as $image) {
-                $validated['image'] = $image->store('uploads', 'public');
-            }
-        }
 
         try {
+            if ($this->contactUsForm->image) {
+                $validated['image'] = $this->contactUsForm->image->store('uploads', 'public');
+            }
             Contact::create($validated);
             session()->flash('success', 'Your message has been sent.');
         } catch (\Exception $e) {
