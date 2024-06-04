@@ -11,7 +11,7 @@ class ContactUsForm extends Form
 {
     use WithFileUploads;
     
-    #[Validate('required|email|max:255')]
+    #[Validate('required|email|max:255', as : 'company email')]
     public ?string $email;
 
     #[Validate('required|min:3|max:255')]
