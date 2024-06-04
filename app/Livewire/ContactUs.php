@@ -19,13 +19,15 @@ class ContactUs extends Component
     use WithFileUploads;
     public ContactUsForm $contactUsForm;
 
-    
+
     public function submitForm(): void
     {
         $validated = $this->contactUsForm->validate();
-        
-        if($this->contactUsForm->image){
-            $validated['image'] = $this->contactUsForm->image->store('uploads', 'public');
+
+        if (is_array($this->contactUsForm->images)) {
+            foreach ($this->contactUsForm->images as $image) {
+                $validated['image'] = $image->store('uploads', 'public');
+            }
         }
 
         try {

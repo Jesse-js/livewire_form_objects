@@ -20,6 +20,6 @@ class ContactUsForm extends Form
     #[Validate('required|min:5|max:255')]
     public ?string $message;
 
-    #[Validate('nullable|sometimes|file|max:1024')]
-    public ?UploadedFile $image;
+    #[Validate(['images.*' => 'image|max:1024'])]
+    public ?array $images;
 }
