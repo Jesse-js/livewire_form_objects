@@ -9,19 +9,27 @@ use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('layout.layout')]
 #[Title('Contact Us')]
 class ContactUs extends Component
 {
 
+    use WithFileUploads;
     public ContactUsForm $contactUsForm;
 
+    
     public function submitForm(): void
     {
-        $this->contactUsForm->validate();
+        $validated = $this->contactUsForm->validate();
+        
+        if($this->contactUsForm->image){
+            $validated['image'] = $this->contactUsForm->image->store('uploads', 'public');
+        }
+
         try {
-            Contact::create($this->contactUsForm->toArray());
+            Contact::create($validated);
             session()->flash('success', 'Your message has been sent.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());

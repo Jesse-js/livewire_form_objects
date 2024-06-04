@@ -34,7 +34,9 @@
             <input wire:model="contactUsForm.email" type="email" id="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@foobar.com" required />
-            @error('contactUsForm.email') <span class="text-red-500">{{ $message }}</span> @enderror
+            @error('contactUsForm.email')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
         <div class="mb-5">
             <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
@@ -42,7 +44,9 @@
             <input wire:model="contactUsForm.subject" type="text" id="subject"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required />
-            @error('contactUsForm.subject') <span class="text-red-500">{{ $message }}</span> @enderror
+            @error('contactUsForm.subject')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
         <div class="mb-5">
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
@@ -51,7 +55,19 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
             </textarea>
-            @error('contactUsForm.message') <span class="text-red-500">{{ $message }}</span> @enderror
+            @error('contactUsForm.message')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+            <input wire:model="contactUsForm.image"
+                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="file_input" type="file">
+            @error('contactUsForm.image')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <button wire:click="submitForm" type="submit"
